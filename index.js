@@ -22,7 +22,7 @@ exports.handler = (event, context, callback) => {
         }, function (err, data) {
         if (err) {
             console.log(err, err.stack);
-            context.fail(err);
+            callback(err);
             return;
         }
 

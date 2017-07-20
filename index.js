@@ -27,7 +27,7 @@ exports.handler = (event, context, callback) => {
         }, function (err, data) {
         if (err) {
             console.log(err, err.stack);
-            callback(process.env.FAILURE_MESSAGE); // Sends generic error message if SES has a problem
+            callback({'errorMessage': process.env.FAILURE_MESSAGE}); // Sends generic error message if SES has a problem
             return;
         }
         console.log(data);

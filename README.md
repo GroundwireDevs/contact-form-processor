@@ -1,6 +1,6 @@
 # contact-form-processor
 
-This contact form backend is meant to provide services for serveral similar website and uses AWS Lambda and SES. Each unique site/page is distinguished by formKey (integer), which can be inserted by a hidden input in the form <input id="formKey" name="formKey" type="hidden" value="FORM-KEY-HERE"> if there are no security concerns.
+This contact form backend is meant to provide services for serveral similar website and uses AWS Lambda and SES. Each unique site/page is distinguished by formKey (integer), which can be inserted by a hidden input in the form <input id="formKey" name="formKey" type="hidden" value="FORM-KEY-HERE"> if there are no security concerns, otherwise, insert formKey server-side.
 
 # Environment Variables
 Substitute 0 for the site's form key and repeat for each unique site.

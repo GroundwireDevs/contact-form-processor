@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 const ses = new AWS.SES(); // SES for email delivery
 const config = require('./config.json')
 
-exports.handler = (event, context, callback) => {
+module.exports.handler = (event, context, callback) => {
 
 	const fromAddress = process.env['FROM_ADDRESS_' + event.formKey]; // Sets from address, based on the formKey input
 	const toAddress = process.env['TO_ADDRESS_' + event.formKey]; // Sets from address, based on the formKey input

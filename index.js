@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk');
 const ses = new AWS.SES();
-const config = require('./config.json')
+const config = require('./config.json');
 
 module.exports.handler = (event, context, callback) => {
 

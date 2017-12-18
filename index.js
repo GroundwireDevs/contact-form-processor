@@ -4,9 +4,6 @@ const config = require('./config.json')
 
 module.exports.handler = (event, context, callback) => {
 
-	const fromAddress = process.env['FROM_ADDRESS_' + event.formKey]; // Sets from address, based on the formKey input
-	const toAddress = process.env['TO_ADDRESS_' + event.formKey]; // Sets from address, based on the formKey input
-
 	let emailData = []; // Declares emailData variable which will have all the form data added to it.
 	for (const key of Object.keys(event)) {
 		emailData.push(key + ': ' + event[key]); // Adds each key and value from the event to the emailData array
@@ -18,12 +15,12 @@ module.exports.handler = (event, context, callback) => {
 	subject = process.env['APP_' + event.formKey] + ' | ' + subject; // Start subject with the app name, set by env variable
 
 	ses.sendEmail({ // Sends email
-		Destination: {ToAddresses: [toAddress]},
+		Destination: {ToAddresses: [config[event.form].toAddress]},
 		Message: {
 			Body: {Text: {Data: emailData, Charset: 'UTF-8'}},
 			Subject: {Data: subject, Charset: 'UTF-8'}
 		},
-		Source: fromAddress
+		Source: config[event.form].fromAddress
 	}, function (err, data) {
 		if (err) {
 			console.log(err, err.stack);

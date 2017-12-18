@@ -12,8 +12,7 @@ module.exports.handler = (event, context, callback) => {
 	emailData = emailData.join('\r\n'); // Converts the array into a string
 
 	let subject = emailData.replace(/\s+/g, ' ').split(' ').slice(0, 8).join(' '); // Sets the subject to be the first eight words of the email data
-	subject = process.env['APP_' + event.formKey] + ' | ' + subject; // Start subject with the app name, set by env variable
-
+	subject = config[event.form].title + ' | ' + subject; // Start subject with the title of the form.
 	ses.sendEmail({ // Sends email
 		Destination: {ToAddresses: [config[event.form].toAddress]},
 		Message: {

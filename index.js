@@ -2,7 +2,6 @@ const AWS = require('aws-sdk');
 const ses = new AWS.SES(); // SES for email delivery
 
 exports.handler = (event, context, callback) => {
-    console.log(event);
     
     const fromAddress = process.env['FROM_ADDRESS_' + event.formKey]; // Sets from address, based on the formKey input
     const toAddress = process.env['TO_ADDRESS_' + event.formKey]; // Sets from address, based on the formKey input
@@ -13,10 +12,10 @@ exports.handler = (event, context, callback) => {
     }
 
     emailData = emailData.join("\r\n"); // Converts the array into a string
-    
+
     let subject = emailData.replace(/\s+/g, ' ').split(' ').slice(0, 8).join(' '); // Sets the subject to be the first eight words of the email data
     subject = process.env['APP_' + event.formKey] + ' | ' + subject; // Start subject with the app name, set by env variable
-    
+
     ses.sendEmail({ // Sends email
         Destination: {ToAddresses: [toAddress]},
         Message: {

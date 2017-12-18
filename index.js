@@ -23,8 +23,7 @@ module.exports.handler = (event, context, callback) => {
 	}, function (err, data) {
 		if (err) {
 			console.log(err, err.stack);
-			callback({'errorMessage': process.env.FAILURE_MESSAGE}); // Sends generic error message if SES has a problem
-			return;
+			callback({'errorMessage': config[event.form].failureMessage}); // Sends error message if SES has a problem
 		}
 		console.log(data);
 		callback(null, {'successMsg': process.env.SUCCESS_MESSAGE}); // Sends success message

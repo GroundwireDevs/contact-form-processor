@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk');
 const ses = new AWS.SES(); // SES for email delivery
+const config = require('./config.json')
 
 exports.handler = (event, context, callback) => {
 

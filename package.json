@@ -1,0 +1,23 @@
+{
+  "name": "contact-form-processor",
+  "version": "1.0.0",
+  "description": "Sends an email of a contact form submission.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GroundwireDevs/contact-form-processor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GroundwireDevs/contact-form-processor/issues"
+  },
+  "homepage": "https://github.com/GroundwireDevs/contact-form-processor#readme",
+  "dependencies": {
+    "aws-sdk": "^2.171.0",
+    "aws-xray-sdk-core": "^1.1.6"
+  }
+}

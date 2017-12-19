@@ -1,11 +1,19 @@
 # contact-form-processor
 
-This contact form backend is meant to provide services for several similar website and uses AWS Lambda and SES. Each unique site/page is distinguished by formKey (integer), which can be inserted by a hidden input in the form <input id="formKey" name="formKey" type="hidden" value="FORM-KEY-HERE"> if there are no security concerns, otherwise, insert formKey server-side.
+This contact form backend is designed for static websites which can't use traditional server email messaging. It takes JSON as input and emails it in a readable format. It can be used for multiple websites or webpages. Quality of this project may not be great as we are not currently using it in production.
 
-# Environment Variables
-Substitute 0 for the site's form key and repeat for each unique site.
-* FROM_ADDRESS_0 - The from email address for the email that goes to TO_ADDRESS.
-* TO_ADDRESS_0 - The email address to send the form data to.
-* APP_0 - The human-readable name of the application or website that the form was submitted on, for example, the URL where the form is located.
-* SUCCESS_MESSAGE - The message that is sent back to the user after the email has been sent.
-* FAILURE_MESSAGE - The message that is sent back to the user if the email was unsuccessful.
+## Deployment
+
+1. Clone the repository locally.
+
+2. Create a config.json file according to the [schema](https://github.com/GroundwireDevs/contact-form-processor/blob/master/config.schema.json) and place it in the root of the repository. The SES account must be out of the sandbox and fromAddress must be a verified identity (domain or specific email).
+
+3. Make sure that the file permissions are correct, for example, chmod -R 777 *
+
+4. Zip the package's contents, for example, zip -r commitment-form-processor.zip ..
+
+5. Upload the deployment package to S3 and change the [CloudFormation template](https://github.com/GroundwireDevs/contact-form-processor/blob/master/contact-form-processor.yml) CodeUri value to the package's S3 URI.
+
+6. Create a new CloudFormation stack with the [CloudFormation template](https://github.com/GroundwireDevs/contact-form-processor/blob/master/contact-form-processor.yml).
+
+7. Send an event to the Lambda function, for example, through API Gateway. It must validate against [event.schema.json](https://github.com/GroundwireDevs/contact-form-processor/blob/master/event.schema.json).

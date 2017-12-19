@@ -3,12 +3,10 @@ const ses = new AWS.SES();
 const config = require('./config.json');
 
 module.exports.handler = (event, context, callback) => {
-
 	let emailData = []; // Declares emailData variable which will have all the form data added to it.
 	for (const key of Object.keys(event)) {
 		emailData.push(key + ': ' + event[key]); // Adds each key and value from the event to the emailData array
 	}
-
 	emailData = emailData.join('\r\n'); // Converts the array into a string
 
 	let subject = emailData.replace(/\s+/g, ' ').split(' ').slice(0, 8).join(' '); // Sets the subject to be the first eight words of the email data
